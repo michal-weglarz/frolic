@@ -3,7 +3,6 @@
 namespace App\Filament\App\Resources;
 
 use App\Filament\App\Resources\CategoryResource\Pages;
-use App\Filament\App\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CategoryResource extends Resource
@@ -66,7 +66,10 @@ class CategoryResource extends Resource
 //                Tables\Actions\BulkActionGroup::make([
 //                    Tables\Actions\DeleteBulkAction::make(),
 //                ]),
-            ]);
+            ])
+            ->recordUrl(
+                fn (Model $record): string => Pages\ViewCategory::getUrl([$record->slug]),
+            );
     }
 
     public static function getRelations(): array
@@ -86,6 +89,10 @@ class CategoryResource extends Resource
             ]);
     }
 
+    public static function getRecordRouteKeyName(): ?string
+    {
+        return 'slug';
+    }
 
     public static function getPages(): array
     {
