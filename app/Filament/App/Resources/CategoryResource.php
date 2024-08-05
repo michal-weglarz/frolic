@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Resources;
 
+use App\Filament\App\Resources\CategoryResource\RelationManagers\ThreadsRelationManager;
 use App\Filament\App\Resources\CategoryResource\Pages;
 use App\Models\Category;
 
@@ -15,6 +16,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Filament\Forms\Get;
+use Filament\Forms\Set;
+
 
 class CategoryResource extends Resource
 {
@@ -29,15 +32,20 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255)
-                    ->live(debounce: 500)
-                    ->afterStateUpdated(function ($state, callable $set) {
+                    ->columnSpanFull()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                            return;
+                        }
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\TextInput::make('slug')
+                    ->columnSpanFull()
                     ->required()
-                    ->disabled()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('description')
+                    ->columnSpanFull()
                     ->maxLength(255),
             ]);
     }
@@ -66,7 +74,7 @@ class CategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-//                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
 //                Tables\Actions\BulkActionGroup::make([
@@ -81,7 +89,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ThreadsRelationManager::class,
         ];
     }
 
