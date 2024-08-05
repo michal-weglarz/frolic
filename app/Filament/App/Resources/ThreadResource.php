@@ -88,6 +88,7 @@ class ThreadResource extends Resource
             'index' => Pages\ListThreads::route('/'),
             'create' => Pages\CreateThread::route('/create'),
             'edit' => Pages\EditThread::route('/{record}/edit'),
+            'view' => Pages\ViewThread::route('/{record}'),
         ];
     }
 }

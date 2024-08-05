@@ -4,6 +4,7 @@ namespace App\Filament\App\Resources\CategoryResource\RelationManagers;
 
 use App\Filament\App\Resources\CategoryResource\Pages\ViewCategory;
 use App\Filament\App\Resources\ThreadResource\Pages\EditThread;
+use App\Filament\App\Resources\ThreadResource\Pages\ViewThread;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -60,7 +61,7 @@ class ThreadsRelationManager extends RelationManager
                 Tables\Actions\DeleteBulkAction::make(),
             ])
             ->recordUrl(
-                fn (Model $record): string => EditThread::getUrl([$record->slug]),
+                fn (Model $record): string => ViewThread::getUrl([$record->slug]),
             );
     }
 }
