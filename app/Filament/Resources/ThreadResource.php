@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\App\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\App\Resources\ThreadResource\Pages;
-use App\Filament\App\Resources\ThreadResource\RelationManagers;
+use App\Filament\Resources\ThreadResource\Pages;
+use App\Filament\Resources\ThreadResource\RelationManagers;
 use App\Models\Thread;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -12,8 +12,6 @@ use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
 class ThreadResource extends Resource
@@ -39,9 +37,6 @@ class ThreadResource extends Resource
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\Hidden::make('slug'),
-                Forms\Components\RichEditor::make('content')
-                    ->columnSpanFull()
-                    ->required(),
 //                Forms\Components\Toggle::make('is_pinned')
 //                    ->required(),
 //                Forms\Components\Toggle::make('is_locked')
@@ -78,7 +73,7 @@ class ThreadResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+         //   RelationManagers\PostsRelationManager::class,
         ];
     }
 

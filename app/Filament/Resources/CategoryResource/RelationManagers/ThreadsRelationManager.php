@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Filament\App\Resources\CategoryResource\RelationManagers;
+namespace App\Filament\Resources\CategoryResource\RelationManagers;
 
-use App\Filament\App\Resources\CategoryResource\Pages\ViewCategory;
-use App\Filament\App\Resources\ThreadResource\Pages\EditThread;
-use App\Filament\App\Resources\ThreadResource\Pages\ViewThread;
+
+use App\Filament\Resources\CategoryResource\Pages\ViewCategory;
+use App\Filament\Resources\ThreadResource\Pages\EditThread;
+use App\Filament\Resources\ThreadResource\Pages\ViewThread;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;

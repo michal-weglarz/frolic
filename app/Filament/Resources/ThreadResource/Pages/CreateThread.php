@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\App\Resources\ThreadResource\Pages;
+namespace App\Filament\Resources\ThreadResource\Pages;
 
-use App\Filament\App\Resources\ThreadResource;
+use App\Filament\Resources\ThreadResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 

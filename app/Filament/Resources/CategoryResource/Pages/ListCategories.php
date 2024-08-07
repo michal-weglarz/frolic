@@ -8,7 +8,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListCategories extends ListRecords
 {
-    protected static string $resource = CategoryResource::class;
+    protected static string $resource = \App\Filament\Resources\CategoryResource::class;
 
     protected function getHeaderActions(): array
     {

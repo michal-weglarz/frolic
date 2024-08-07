@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('content');
             $table->boolean('is_pinned')->default(false);
             $table->boolean('is_locked')->default(false);
             $table->integer('view_count')->default(0);
+            $table->integer('reply_count')->default(0);
+            $table->timestamp('last_posted_at')->nullable();
+            $table->foreignId('last_posted_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->timestamps();
         });
     }
 

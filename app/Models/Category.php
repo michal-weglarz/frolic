@@ -20,4 +20,9 @@ class Category extends Model
     {
         return $this->hasMany(Thread::class);
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }
