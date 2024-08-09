@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Wildside\Userstamps\Userstamps;
 
 class Thread extends Model
 {
     use HasFactory;
+    use Userstamps;
 
     protected $fillable = [
         'category_id',
@@ -20,9 +22,6 @@ class Thread extends Model
         'is_pinned',
         'is_locked',
         'view_count',
-        'reply_count',
-        'last_posted_at',
-        'last_posted_by'
     ];
 
     protected $casts = [

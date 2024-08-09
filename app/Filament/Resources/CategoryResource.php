@@ -72,6 +72,7 @@ class CategoryResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('creator.name')->searchable(),
             ])
             ->filters([
                 //

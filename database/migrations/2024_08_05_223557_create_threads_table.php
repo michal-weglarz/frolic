@@ -20,9 +20,8 @@ return new class extends Migration
             $table->boolean('is_pinned')->default(false);
             $table->boolean('is_locked')->default(false);
             $table->integer('view_count')->default(0);
-            $table->integer('reply_count')->default(0);
-            $table->timestamp('last_posted_at')->nullable();
-            $table->foreignId('last_posted_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

@@ -37,6 +37,10 @@ class ThreadResource extends Resource
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\Hidden::make('slug'),
+//                Forms\Components\Select::make('user_id')
+//                    ->relationship('user', 'id')
+//                    ->a
+//                    ->columnSpanFull(),
 //                Forms\Components\Toggle::make('is_pinned')
 //                    ->required(),
 //                Forms\Components\Toggle::make('is_locked')
@@ -58,6 +62,7 @@ class ThreadResource extends Resource
                 Tables\Columns\BooleanColumn::make('is_locked'),
                 Tables\Columns\TextColumn::make('view_count')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('creator.name')->searchable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category')->relationship('category', 'name'),
