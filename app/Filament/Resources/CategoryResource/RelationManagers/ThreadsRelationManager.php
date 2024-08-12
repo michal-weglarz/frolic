@@ -30,8 +30,6 @@ class ThreadsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\RichEditor::make('content')
-                    ->required(),
                 Forms\Components\Toggle::make('is_pinned'),
                 Forms\Components\Toggle::make('is_locked'),
             ]);
@@ -60,9 +58,6 @@ class ThreadsRelationManager extends RelationManager
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ])
-            ->recordUrl(
-                fn (Model $record): string => ViewThread::getUrl([$record->slug]),
-            );
+            ]);
     }
 }

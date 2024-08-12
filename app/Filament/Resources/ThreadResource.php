@@ -9,14 +9,19 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class ThreadResource extends Resource
 {
     protected static ?string $model = Thread::class;
+    protected static ?string $navigationGroup = 'Content';
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -68,17 +73,31 @@ class ThreadResource extends Resource
                 Tables\Filters\SelectFilter::make('category')->relationship('category', 'name'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+            ]);
+//            ->recordUrl(
+//                fn (Model $record): string => Pages\ViewThread::getUrl([$record->slug]),
+//            );
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('title')->columnSpanFull(),
+                TextEntry::make('content')->columnSpanFull(),
+                TextEntry::make('slug')->columnSpanFull(),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-         //   RelationManagers\PostsRelationManager::class,
+            RelationManagers\PostsRelationManager::class,
         ];
     }
 
