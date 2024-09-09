@@ -28,6 +28,11 @@ $logout = function (Logout $logout) {
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Admin -->
+                <div class="flex flex-col justify-center">
+                    <a href="/admin" class="bg-white px-4 py-2">Login to panel admin</a>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
