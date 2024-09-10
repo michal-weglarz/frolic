@@ -31,7 +31,7 @@ $logout = function (Logout $logout) {
 
                 <!-- Admin -->
                 <div class="flex flex-col justify-center">
-                    <a href="/admin" class="bg-white px-4 py-2">Login to panel admin</a>
+                    <a href="/admin" class="bg-white px-4 py-2">Admin panel</a>
                 </div>
             </div>
 

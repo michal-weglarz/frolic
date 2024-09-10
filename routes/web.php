@@ -10,6 +10,11 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+
+Route::view('categories', 'categories')
+    ->name('categories');
+
+
+require __DIR__ . '/auth.php';
 
 
